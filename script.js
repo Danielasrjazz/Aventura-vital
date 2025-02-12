@@ -3,7 +3,7 @@ let stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
 let playerChoices = {};
 
 let challenges = {
-    1: { description: "Resolver un acertijo de lógica", image: "images/acertijo.jpg", options: [
+    1: { description: "Resolver un acertijo de lógica", image: "images/acertijo.jpg.webp", options: [
             { text: "Intuición", effect: "Creatividad", knowledge: 5 },
             { text: "Análisis lógico", effect: "Pensamiento crítico", knowledge: 10 },
             { text: "Ignorarlo", effect: "Sin cambios", knowledge: 0 }

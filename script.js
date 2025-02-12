@@ -92,3 +92,4 @@ let achievements = {
 window.onload = function() {
     startGame();
 };
+console.log("Script cargado correctamente");

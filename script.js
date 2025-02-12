@@ -88,3 +88,4 @@ let achievements = {
 
     document.getElementById("challenge-container").style.display = "block";
 }
+<script src="script.js"></script>

@@ -51,7 +51,7 @@ let achievements = {
     document.getElementById("challenge-image").style.display = "block";
 
     let optionsContainer = document.getElementById("challenge-options");
-    optionsContainer.innerHTML = ""; // Limpiar opciones previas
+    optionsContainer.innerscript.js = ""; // Limpiar opciones previas
 
     challenge.options.forEach((option, index) => {
         let btn = document.createElement("button");

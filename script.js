@@ -16,47 +16,55 @@ let achievements = {
     "amigo_fiel": { description: "❤️ Decisiones empáticas", condition: () => stats.empatia > 40, unlocked: false }
 };
 
-function startGame() {
+    function startGame() {
     let challenge = challenges[level];
-    document.getElementById("challenge-question").innerText = `Nivel ${level} - ${challenge.description}`;
+
+    // Verificar que haya un reto en este nivel
+    if (!challenge) {
+        endGame();
+        return;
+    }
+
+    // Mostrar la pregunta y la imagen del reto
+    document.getElementById("challenge-question").innerText = `Nivel ${level}: ${challenge.description}`;
     document.getElementById("challenge-image").src = challenge.image;
-    document.getElementById("challenge-options").innerHTML = "";
-    
+    document.getElementById("challenge-image").style.display = "block";
+
+    let optionsContainer = document.getElementById("challenge-options");
+    optionsContainer.innerHTML = ""; // Limpiar opciones previas
+
     challenge.options.forEach((option, index) => {
         let btn = document.createElement("button");
         btn.innerText = option.text;
         btn.classList.add("btn");
+
+        // Mostrar el resultado tras elegir
         btn.onclick = function() {
-            alert(`Resultado: ${option.effect}.`);
+            document.getElementById("result-message").innerText = `Has elegido: ${option.text}. ${option.effect}`;
+            document.getElementById("result-message").style.display = "block";
+
+            // Sumar puntos
             stats.conocimiento += option.knowledge || 0;
-            level++;
-            if (level > Object.keys(challenges).length) endGame();
-            else showSummary();
+            stats.empatia += option.empatia || 0;
+            stats.resiliencia += option.resiliencia || 0;
+
+            // Efecto visual de selección
+            btn.classList.add("selected");
+
+            setTimeout(() => {
+                level++;
+                updateProgress();
+                if (level > Object.keys(challenges).length) {
+                    endGame();
+                } else {
+                    document.getElementById("result-message").style.display = "none";
+                    startGame();
+                }
+            }, 2000); // Espera 2 segundos antes de avanzar
         };
-        document.getElementById("challenge-options").appendChild(btn);
+
+        optionsContainer.appendChild(btn);
     });
 
     document.getElementById("challenge-container").style.display = "block";
 }
-
-function endGame() {
-    document.getElementById("achievements-container").style.display = "block";
-    let list = document.getElementById("achievements-list");
-    list.innerHTML = "";
-    for (let key in achievements) {
-        if (achievements[key].condition()) {
-            let li = document.createElement("li");
-            li.innerText = achievements[key].description;
-            list.appendChild(li);
-        }
-    }
-}
-
-function restartGame() {
-    score = 0; level = 1;
-    stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
-    document.getElementById("final-container").style.display = "none";
-    startGame();
-}
-
-startGame();

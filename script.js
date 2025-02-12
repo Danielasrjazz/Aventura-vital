@@ -3,10 +3,30 @@ let stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
 let playerChoices = {};
 
 let challenges = {
-    1: { description: "Resolver un acertijo de lógica", image: "images/acertijo.jpg.webp", options: [
+    1: { 
+        description: "Resolver un acertijo de lógica",
+        image: "images/acertijo.jpg.webp",
+        options: [
             { text: "Intuición", effect: "Creatividad", knowledge: 5 },
             { text: "Análisis lógico", effect: "Pensamiento crítico", knowledge: 10 },
             { text: "Ignorarlo", effect: "Sin cambios", knowledge: 0 }
+        ]
+    },
+    2: { 
+        description: "Tomar una decisión moral crucial",
+        image: "images/decision_moral.jpg.webp",
+        options: [
+            { text: "Decir la verdad", effect: "Honestidad fortalecida", knowledge: 10 },
+            { text: "Ocultar la verdad", effect: "Moralidad ambigua", knowledge: 5 },
+            { text: "Mentir", effect: "Consecuencias futuras", knowledge: -5 }
+        ]
+    },
+    3: { 
+        description: "Un amigo te pide consejo sobre una situación difícil.",
+        image: "images/amigo_consejo.jpg.webp",
+        options: [
+            { text: "Guiarlo con la verdad", effect: "Refuerzas tu sabiduría", knowledge: 10 },
+            { text: "Darle una respuesta neutral", effect: "Nada cambia", knowledge: 0 }
         ]
     }
 };

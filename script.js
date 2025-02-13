@@ -1,4 +1,5 @@
 let score = 0, level = 1;
+let selectedCharacter = null;
 let stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
 
 let characters = {
@@ -10,36 +11,30 @@ let characters = {
 };
 
 let challenges = {
-    1: {
-        description: "Resolver un acertijo de lógica.",
-        character: "Lógi",
-        image: "images/acertijo.jpg.webp",
-        options: [
+    1: { description: "Resolver un acertijo de lógica.", character: "Lógi", image: "images/acertijo.jpg.webp", options: [
             { text: "Usar intuición", effect: "Creatividad aumentada", knowledge: 5 },
             { text: "Usar análisis lógico", effect: "Pensamiento crítico mejorado", knowledge: 10 },
             { text: "Ignorarlo", effect: "Sin cambios", knowledge: 0 }
-        ]
-    },
-    2: {
-        description: "Tomar una decisión moral crucial.",
-        character: "Metis",
-        image: "images/decision_moral.jpg.webp",
-        options: [
+        ] },
+    2: { description: "Tomar una decisión moral crucial.", character: "Metis", image: "images/decision_moral.jpg.webp", options: [
             { text: "Decir la verdad", effect: "Honestidad fortalecida", knowledge: 10, empatia: 5 },
             { text: "Ocultar la verdad", effect: "Moralidad ambigua", knowledge: 5 },
             { text: "Mentir", effect: "Consecuencias futuras", knowledge: -5, resiliencia: -5 }
-        ]
-    },
-    3: {
-        description: "Un amigo te pide consejo sobre una situación difícil.",
-        character: "Imagi",
-        image: "images/amigo_consejo.jpg.webp",
-        options: [
+        ] },
+    3: { description: "Un amigo te pide consejo sobre una situación difícil.", character: "Imagi", image: "images/amigo_consejo.jpg.webp", options: [
             { text: "Guiarlo con la verdad", effect: "Refuerzas tu sabiduría", knowledge: 10, empatia: 5 },
             { text: "Darle una respuesta neutral", effect: "Nada cambia", knowledge: 0 }
-        ]
-    }
+        ] }
 };
+
+function selectCharacter(character) {
+    selectedCharacter = character;
+    document.getElementById("intro-container").style.display = "none";
+    document.getElementById("game-container").style.display = "block";
+    document.getElementById("character-name").innerText = `Has elegido: ${character}`;
+    document.getElementById("character-description").innerText = characters[character].description;
+    startGame();
+}
 
 function startGame() {
     let challenge = challenges[level];
@@ -48,9 +43,9 @@ function startGame() {
         return;
     }
 
-    console.log("Nivel actual:", level, "Personaje:", challenge.character);
+    console.log("Nivel actual:", level, "Personaje en reto:", challenge.character);
     
-    document.getElementById("challenge-question").innerText = `Nivel ${level} - Personaje: ${challenge.character}\n${challenge.description}`;
+    document.getElementById("challenge-question").innerText = `Nivel ${level} - ${challenge.character}\n${challenge.description}`;
     document.getElementById("challenge-image").src = challenge.image;
     document.getElementById("challenge-container").style.display = "block";
 
@@ -97,7 +92,10 @@ function restartGame() {
     level = 1;
     stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
     document.getElementById("final-container").style.display = "none";
-    startGame();
+    document.getElementById("intro-container").style.display = "block";
 }
 
-window.onload = startGame;
+window.onload = function() {
+    document.getElementById("game-container").style.display = "none";
+    document.getElementById("intro-container").style.display = "block";
+};

@@ -1,23 +1,42 @@
 let score = 0, level = 1;
 let stats = { conocimiento: 0, empatia: 0, resiliencia: 0 };
 
+let characters = {
+    "Brío": { description: "Energía y valentía", skills: ["Fuerza", "Resistencia"] },
+    "Imagi": { description: "Creatividad e innovación", skills: ["Arte", "Solución de problemas"] },
+    "Lógi": { description: "Razonamiento y lógica", skills: ["Matemáticas", "Pensamiento crítico"] },
+    "Risco": { description: "Audacia y toma de riesgos", skills: ["Aventura", "Decisión"] },
+    "Metis": { description: "Sabiduría y estrategia", skills: ["Planeación", "Astucia"] }
+};
+
 let challenges = {
-    1: { 
+    1: {
         description: "Resolver un acertijo de lógica",
+        character: "Lógi",
         image: "images/acertijo.jpg.webp",
         options: [
-            { text: "Intuición", effect: "Creatividad aumentada", knowledge: 5 },
-            { text: "Análisis lógico", effect: "Pensamiento crítico mejorado", knowledge: 10 },
+            { text: "Usar intuición", effect: "Creatividad aumentada", knowledge: 5 },
+            { text: "Usar análisis lógico", effect: "Pensamiento crítico mejorado", knowledge: 10 },
             { text: "Ignorarlo", effect: "Sin cambios", knowledge: 0 }
         ]
     },
-    2: { 
+    2: {
         description: "Tomar una decisión moral crucial",
+        character: "Metis",
         image: "images/decision_moral.jpg.webp",
         options: [
             { text: "Decir la verdad", effect: "Honestidad fortalecida", knowledge: 10, empatia: 5 },
             { text: "Ocultar la verdad", effect: "Moralidad ambigua", knowledge: 5 },
             { text: "Mentir", effect: "Consecuencias futuras", knowledge: -5, resiliencia: -5 }
+        ]
+    },
+    3: {
+        description: "Un amigo te pide consejo sobre una situación difícil",
+        character: "Imagi",
+        image: "images/amigo_consejo.jpg.webp",
+        options: [
+            { text: "Guiarlo con la verdad", effect: "Refuerzas tu sabiduría", knowledge: 10, empatia: 5 },
+            { text: "Darle una respuesta neutral", effect: "Nada cambia", knowledge: 0 }
         ]
     }
 };
@@ -31,7 +50,7 @@ function startGame() {
 
     console.log("Nivel actual:", level); // Debugging
 
-    document.getElementById("challenge-question").innerText = `Nivel ${level}: ${challenge.description}`;
+    document.getElementById("challenge-question").innerText = `Nivel ${level} - ${challenge.character}: ${challenge.description}`;
     document.getElementById("challenge-image").src = challenge.image;
     document.getElementById("challenge-container").style.display = "block";
 

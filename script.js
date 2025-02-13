@@ -11,7 +11,7 @@ let characters = {
 
 let challenges = {
     1: {
-        description: "Resolver un acertijo de lógica",
+        description: "Resolver un acertijo de lógica.",
         character: "Lógi",
         image: "images/acertijo.jpg.webp",
         options: [
@@ -21,7 +21,7 @@ let challenges = {
         ]
     },
     2: {
-        description: "Tomar una decisión moral crucial",
+        description: "Tomar una decisión moral crucial.",
         character: "Metis",
         image: "images/decision_moral.jpg.webp",
         options: [
@@ -31,7 +31,7 @@ let challenges = {
         ]
     },
     3: {
-        description: "Un amigo te pide consejo sobre una situación difícil",
+        description: "Un amigo te pide consejo sobre una situación difícil.",
         character: "Imagi",
         image: "images/amigo_consejo.jpg.webp",
         options: [
@@ -48,9 +48,9 @@ function startGame() {
         return;
     }
 
-    console.log("Nivel actual:", level); // Debugging
-
-    document.getElementById("challenge-question").innerText = `Nivel ${level} - ${challenge.character}: ${challenge.description}`;
+    console.log("Nivel actual:", level, "Personaje:", challenge.character);
+    
+    document.getElementById("challenge-question").innerText = `Nivel ${level} - Personaje: ${challenge.character}\n${challenge.description}`;
     document.getElementById("challenge-image").src = challenge.image;
     document.getElementById("challenge-container").style.display = "block";
 
@@ -90,7 +90,7 @@ function startGame() {
 function endGame() {
     document.getElementById("challenge-container").style.display = "none";
     document.getElementById("final-container").style.display = "block";
-    document.getElementById("final-message").innerText = "¡Juego terminado!";
+    document.getElementById("final-message").innerText = "¡Juego terminado! Gracias por participar.";
 }
 
 function restartGame() {

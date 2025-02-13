@@ -11,32 +11,28 @@
         <h1>Chronos: La Aventura del Ciclo Vital</h1>
         <p>Explora las etapas del desarrollo humano a través de desafíos interactivos.</p>
 
-        <div id="character-info" style="display: none;">
+        <div id="intro-container">
+            <h2>Bienvenido a Chronos</h2>
+            <p>Selecciona un personaje para comenzar tu aventura.</p>
+            <div id="character-selection">
+                <button class="character-btn" onclick="selectCharacter('Brío')">Brío</button>
+                <button class="character-btn" onclick="selectCharacter('Imagi')">Imagi</button>
+                <button class="character-btn" onclick="selectCharacter('Lógi')">Lógi</button>
+                <button class="character-btn" onclick="selectCharacter('Risco')">Risco</button>
+                <button class="character-btn" onclick="selectCharacter('Metis')">Metis</button>
+            </div>
+        </div>
+
+        <div id="game-container" style="display: none;">
             <h2 id="character-name"></h2>
             <p id="character-description"></p>
-        </div>
 
-        <div id="challenge-container" style="display: none;">
-            <img id="challenge-image" src="" class="challenge-image" alt="Imagen del desafío">
-            <p id="result-message" style="display: none; font-weight: bold;"></p>
-            <h2 id="challenge-question"></h2>
-            <div id="challenge-options"></div>
-        </div>
-
-        <div id="summary-container" style="display: none;">
-            <h2>Resumen del Nivel</h2>
-            <p id="summary-text"></p>
-            <p><strong>Puntaje Total:</strong> <span id="summary-score"></span></p>
-            <p><strong>📚 Conocimiento:</strong> <span id="summary-knowledge"></span></p>
-            <p><strong>❤️ Empatía:</strong> <span id="summary-empathy"></span></p>
-            <p><strong>🔥 Resiliencia:</strong> <span id="summary-resilience"></span></p>
-            <button class="btn" onclick="continueGame()">Continuar</button>
-        </div>
-
-        <div id="achievements-container" style="display: none;">
-            <h2>🏆 Logros Desbloqueados</h2>
-            <ul id="achievements-list"></ul>
-            <button class="btn" onclick="showFinalScreen()">Ver Resultado Final</button>
+            <div id="challenge-container" style="display: none;">
+                <h3 id="challenge-question"></h3>
+                <img id="challenge-image" src="" class="challenge-image" alt="Imagen del desafío">
+                <p id="result-message" style="display: none; font-weight: bold;"></p>
+                <div id="challenge-options"></div>
+            </div>
         </div>
 
         <div id="final-container" style="display: none;">
